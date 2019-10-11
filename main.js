@@ -21,7 +21,7 @@ new Vue({
     error:'',
     nama:'',
     fileName : '',
-    url : '',
+    url : [],
     on : false,
     home : false,
     onregister : false,
@@ -62,7 +62,7 @@ new Vue({
       })
        .then((data)=>{
          console.log(data);
-         this.url = data.data.link
+         this.url.push(data.data.link)
          this.on = true
          console.log(this.url)
        })

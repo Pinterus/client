@@ -130,9 +130,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-if='on'>
+              <!-- gambar gcs -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-if='on' v-for='upload in url'>
                   <div class="img-wrapper">
-                    <a v-bind:href="url"><img v-bind:src="url" class="img-responsive"></a>
+                    <a v-bind:href="url"><img v-bind:src="upload" class="img-responsive"></a>
                     <div class="img-overlay">
                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
