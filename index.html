@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <script src="https://kit.fontawesome.com/bc382c3fce.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
     <title>Pinterus</title>
@@ -18,21 +18,24 @@
     <div id="app">
       <section id="navbar">
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-          <a class="navbar-brand" href="#">P</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <form class="form-inline" id='searchbar'>
-            <div class="input-group" id='searchform'>
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <div style="transform: rotate(320deg)">
-                      &#9906
-                  </div></span>
-              </div>
-              <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" id="searcharea">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"><i class="fab fa-pinterest-p"></i> Pinterus</a>
             </div>
-          </form>
+          </div>
+          <!-- <div id='searchbar'>
+            <form class="form-inline">
+              <div class="input-group" id='searchform'>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <div style="transform: rotate(320deg)">
+                        &#9906
+                    </div></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" id="searcharea">
+              </div>
+            </form>
+          </div> -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" id="navright">
               <li class="nav-item active">
@@ -47,21 +50,22 @@
       </section>
       <!-- ini batas navbar -->
       <!-- <navbar></navbar>  -->
+
       <!-- <test></test> -->
-      <section id="gallery">
+      <section id="gallery" v-if="!searchStatus" >
         <div class="container">
           <div id="image-gallery">
             <div class="row">
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-for="(image, index) in images" :key="index">
+              <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-for="(image, index) in images" :key="index">
                 <div class="img-wrapper">
                   <a :href="image.urls.full"><img :src="image.urls.full" class="img-responsive"></a>
                   <div class="img-overlay">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- tembak server -->
-              <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
                 <div class="img-wrapper">
                   <a href="https://unsplash.it/600"><img src="https://unsplash.it/600" class="img-responsive"></a>
                   <div class="img-overlay">
@@ -124,7 +128,7 @@
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div><!-- End row -->
           </div><!-- End image gallery -->
         </div><!-- End container --> 
