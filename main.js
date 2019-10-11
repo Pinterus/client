@@ -12,7 +12,14 @@ new Vue({
   el: '#app',
   data: {
     images: [],
-    file : ''
+    file : '',
+    usernamereg:'',
+    emailreg:'',
+    passwordreg:'',
+    emaillog:'',
+    passwordlog:'',
+    error:'',
+    nama:''
   },
   // components : {Navbar},
   methods: {
@@ -49,13 +56,61 @@ new Vue({
     handleFileUpload(){
       this.file = this.$refs.file.files[0]
       console.log(this.file,'bawah');
-    }
+    },
+    register(){
+      axios({
+          method: "post",
+          url: "http://localhost:3000/register",
+          data:{
+              username: this.usernamereg,
+              email: this.emailreg,
+              password: this.passwordreg
+          }
+      })
+          .then(({data}) => {
+              localStorage.setItem('token', data.token)
+              localStorage.setItem('username', data.username)
+              this.nama = data.username
+              // this.isLogin = true
+              // this.read()
+          })
+          .catch(err => {
+            // console.log(err);
+            this.error = JSON.parse(err.response.request.response).message[0]                    
+          })
+  },
+  login(){
+      axios({
+          method: "post",
+          url: "http://localhost:3000/login",
+          data:{
+              email: this.emaillog,
+              password: this.passwordlog
+          }
+      })
+          .then(({data}) => {
+              localStorage.setItem('token', data.token)
+              localStorage.setItem('username', data.username)
+              this.nama = data.username
+              // this.isLogin = true
+              // this.read()
+          })
+          .catch(err => {
+              this.error = JSON.parse(err.response.request.response).message[0]
+          })
+  },
+  signout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    // this.isLogin = false
+    this.nama = ''
+  }
   },
   computed: {
     
   },
   created() {
-    this.fetchImage()
+    // this.fetchImage()
   }
 })
 

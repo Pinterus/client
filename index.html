@@ -36,9 +36,9 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" id="navright">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Nadhil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#"> {{ nama }} <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" @click="signout()">
                 <a class="nav-link" href="#">Logout</a>
               </li>
             </ul>
@@ -148,14 +148,14 @@
             <div class="card card-signin my-5">
               <div class="card-body">
                 <h5 class="card-title text-center">Sign In</h5>
-                <form class="form-signin">
+                <form class="form-signin" @submit.prevent="login()">
                   <div class="form-label-group">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus v-model="emaillog">
                   </div>   
                   <div class="form-label-group">
                     <label for="inputPassword">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="passwordlog">
                   </div>
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Sign in</button>
                 </form>
@@ -170,20 +170,20 @@
               <div class="card card-signin my-5">
                 <div class="card-body">
                   <h5 class="card-title text-center">Register</h5>
-                  <form class="form-signin">
+                  <form class="form-signin" @submit.prevent="register()">
                       <div class="form-label-group">
                           <label for="inputUsername">Username</label>
-                          <input type="password" id="inputUsername" class="form-control" placeholder="Username" required>
+                          <input type="text" id="inputUsername" class="form-control" placeholder="Username" required v-model="usernamereg">
                         </div>
                     <div class="form-label-group">
                       <label for="inputEmail">Email</label>
-                      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="emailreg">
                     </div>   
                     <div class="form-label-group">
                       <label for="inputPassword">Password</label>
-                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="passwordreg">
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Sign in</button>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Register</button>
                   </form>
                 </div>
               </div>
