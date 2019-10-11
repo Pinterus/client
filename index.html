@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
     <title>Pinterus</title>
   </head>
@@ -132,7 +133,7 @@
               </div>
               <!-- gambar gcs -->
               <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-if='on' v-for='upload in url'>
-                  <div class="img-wrapper">
+                <div class="img-wrapper">
                     <a v-bind:href="url"><img v-bind:src="upload" class="img-responsive"></a>
                     <div class="img-overlay">
                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -212,3 +213,21 @@
     <script src="main.js"></script>
   </body>
 </html>
+
+
+
+<!-- <div class="fb-share-button" v-bind:data-href="upload?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" data-layout="button" data-size="large">
+  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F414612%2Fpexels-photo-414612.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+</div>
+
+<div class="fb-share-button" data-href="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" data-layout="button" data-size="large">
+  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F414612%2Fpexels-photo-414612.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+    Share
+  </a>
+</div> -->
+
+                 
+<!-- <a class="fb-share-button" href="upload" target="_blank">
+    Share on Facebook
+  </a> -->
+
