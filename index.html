@@ -16,7 +16,7 @@
   </head>
   <body>
     <div id="app">
-      <section id="navbar">
+      <section id="navbar" v-if="home">
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -52,7 +52,7 @@
       <!-- <navbar></navbar>  -->
 
       <!-- <test></test> -->
-      <section id="gallery" v-if="!searchStatus" >
+      <section id="gallery" v-if="!searchStatus && home" >
         <div class="container">
           <div id="image-gallery">
             <div class="card-column">
@@ -130,9 +130,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-if='on'>
+              <!-- gambar gcs -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-if='on' v-for='upload in url'>
                   <div class="img-wrapper">
-                    <a v-bind:href="url"><img v-bind:src="url" class="img-responsive"></a>
+                    <a v-bind:href="url"><img v-bind:src="upload" class="img-responsive"></a>
                     <div class="img-overlay">
                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
@@ -143,7 +144,7 @@
         </div><!-- End container --> 
       </section>
       <!-- upload image -->
-      <section id="upload">
+      <section id="upload" v-if='home'>
         <h3>Upload your image</h3>
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="file" ref='file' v-on:change="handleFileUpload()" style="cursor: pointer">
@@ -153,7 +154,7 @@
       </form>
       </section>
       <!-- login cards -->
-      <div class="container">
+      <div class="container" v-if='!home && onlogin'>
           <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
               <div class="card-body">
@@ -170,13 +171,13 @@
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Sign in</button>
                   <h3> {{ errorlogin }} </h3>
                 </form>
-                <p id='regLink'>Don't have an account? <a href="">Sign Up</a></p>
+                <p id='regLink'>Don't have an account? <a href="" @click.prevent='formRegister'>Sign Up</a></p>
               </div>
             </div>
           </div>
       </div>
         <!-- register cards -->
-        <div class="container">
+        <div class="container" v-if='!home  && onregister'>
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
               <div class="card card-signin my-5">
                 <div class="card-body">
