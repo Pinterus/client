@@ -31,6 +31,7 @@ body{
 .img-wrapper {
     position: relative;
     margin-top: 15px;
+    -webkit-column-break-inside: avoid;
 }
 .img-wrapper img {
     width: 100%;
