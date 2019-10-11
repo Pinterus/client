@@ -18,9 +18,6 @@ new Vue({
     passwordreg:'',
     emaillog:'',
     passwordlog:'',
-    errorlogin:'',
-    errorregister:'',
-    errTrigger:'',
     nama:'',
     fileName : '',
     url : [],
@@ -89,6 +86,21 @@ new Vue({
           }
       })
           .then(({data}) => {
+            let timerInterval
+            Swal.fire({
+              title: 'Logging In!',
+              timer: 800,
+              onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                  Swal.getContent().querySelector('strong')
+                    .textContent = Swal.getTimerLeft()
+                }, 100)
+              },
+              onClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
               localStorage.setItem('token', data.token)
               localStorage.setItem('username', data.username)
               this.nama = data.username
@@ -97,12 +109,16 @@ new Vue({
               this.passwordreg = ''
               this.onregister = false
               this.isLogin()
-              // this.isLogin = true
-              // this.read()
+            })
           })
           .catch(err => {
             // console.log(err);
-            this.errorregister = JSON.parse(err.response.request.response).message[0]                    
+            // this.errorregister = JSON.parse(err.response.request.response).message[0]                    
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: JSON.parse(err.response.request.response).message[0]
+            })
           })
   },
   login(){
@@ -115,25 +131,60 @@ new Vue({
           }
       })
           .then(({data}) => {
+            let timerInterval
+            Swal.fire({
+              title: 'Logging In!',
+              timer: 800,
+              onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                  Swal.getContent().querySelector('strong')
+                    .textContent = Swal.getTimerLeft()
+                }, 100)
+              },
+              onClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
               localStorage.setItem('token', data.token)
               localStorage.setItem('username', data.username)
               this.nama = data.username
               this.emaillog = ''
               this.passwordlog = ''
               this.isLogin()
-              // this.isLogin = true
-              // this.read()
+            })
           })
           .catch(err => {
-              this.errorlogin = JSON.parse(err.response.request.response).message[0]
+            // this.errorlogin = JSON.parse(err.response.request.response).message[0]
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: JSON.parse(err.response.request.response).message[0]
+            })  
           })
   },
   signout(){
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    this.nama = ''
-    this.isLogin()
-    // this.isLogin = false
+    let timerInterval
+      Swal.fire({
+        title: 'Thanks!',
+        timer: 800,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            Swal.getContent().querySelector('strong')
+              .textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        this.isLogin()
+        this.nama = ''
+      })
+    
   },
   isLogin(){
     if(localStorage.getItem('token')){
@@ -151,8 +202,12 @@ new Vue({
     
   },
   watch: {
-    errTrigger(){
-      this.error = ''
+    home(){
+      this.usernamereg = ''
+      this.emailreg = ''
+      this.passwordreg = ''
+      this.emaillog = ''
+      this.passwordlog = ''
     }
   },
   created() {
