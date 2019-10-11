@@ -31,8 +31,13 @@ body{
 .img-wrapper {
     position: relative;
     margin-top: 15px;
-    -webkit-column-break-inside: avoid;
+    /* -webkit-column-break-inside: avoid; */
 }
+
+#regLink{
+    margin: 10px auto;
+}
+
 .img-wrapper img {
     width: 100%;
 }
@@ -40,7 +45,7 @@ body{
     background: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: absolute; 
     top: 0;
     left: 0;
     display: flex;
@@ -75,6 +80,12 @@ body{
     object-fit: contain;
     padding: 5%;
 }
+
+#signinButton{
+    margin-top: 10px;
+}
+
+
 @media screen and (min-width: 768px) {
     #overlay img {
         width: 60%;
