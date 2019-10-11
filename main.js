@@ -19,6 +19,7 @@ new Vue({
     emaillog:'',
     passwordlog:'',
     error:'',
+    errTrigger:'',
     nama:''
   },
   // components : {Navbar},
@@ -117,6 +118,11 @@ new Vue({
   },
   computed: {
     
+  },
+  watch: {
+    errTrigger(){
+      this.error = ''
+    }
   },
   created() {
     // this.fetchImage()

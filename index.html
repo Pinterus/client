@@ -154,13 +154,14 @@
                 <form class="form-signin" @submit.prevent="login()">
                   <div class="form-label-group">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus v-model="emaillog">
+                    <input type="text" id="loginEmail" class="form-control" placeholder="Email address" autofocus v-model="emaillog">
                   </div>   
                   <div class="form-label-group">
                     <label for="inputPassword">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="passwordlog">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="passwordlog">
                   </div>
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Sign in</button>
+                  <h3> {{ error }} </h3>
                 </form>
                 <p id='regLink'>Don't have an account? <a href="">Sign Up</a></p>
               </div>
@@ -176,17 +177,18 @@
                   <form class="form-signin" @submit.prevent="register()">
                       <div class="form-label-group">
                           <label for="inputUsername">Username</label>
-                          <input type="text" id="inputUsername" class="form-control" placeholder="Username" required v-model="usernamereg">
+                          <input type="text" id="inputUsername" class="form-control" placeholder="Username" v-model="usernamereg">
                         </div>
                     <div class="form-label-group">
                       <label for="inputEmail">Email</label>
-                      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="emailreg">
+                      <input type="text" id="inputEmail" class="form-control" placeholder="Email address" autofocus v-model="emailreg">
                     </div>   
                     <div class="form-label-group">
                       <label for="inputPassword">Password</label>
-                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="passwordreg">
+                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="passwordreg">
                     </div>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Register</button>
+                    <h3> {{ error }} </h3>
                   </form>
                 </div>
               </div>
