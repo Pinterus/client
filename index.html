@@ -24,19 +24,6 @@
               <a class="navbar-brand" href="#"><i class="fab fa-pinterest-p"></i> Pinterus</a>
             </div>
           </div>
-          <!-- <div id='searchbar'>
-            <form class="form-inline">
-              <div class="input-group" id='searchform'>
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">
-                    <div style="transform: rotate(320deg)">
-                        &#9906
-                    </div></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" id="searcharea">
-              </div>
-            </form>
-          </div> -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" id="navright">
               <li class="nav-item active">
@@ -58,83 +45,13 @@
           <div id="image-gallery">
             <div class="card-column">
             <div class="row">
-              <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-for="(image, index) in images" :key="index">
-                <div class="img-wrapper">
-                  <a :href="image.urls.full"><img :src="image.urls.full" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div> -->
-              <!-- tembak server -->
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/600"><img src="https://unsplash.it/600" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/700"><img src="https://unsplash.it/700" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/800"><img src="https://unsplash.it/800" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/900"><img src="https://unsplash.it/900" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/1000"><img src="https://unsplash.it/1000" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/1100"><img src="https://unsplash.it/1100" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/1200"><img src="https://unsplash.it/1200" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                <div class="img-wrapper">
-                  <a href="https://unsplash.it/500"><img src="https://unsplash.it/500" class="img-responsive"></a>
-                  <div class="img-overlay">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
               <!-- gambar gcs -->
-              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-if='on' v-for='upload in url'>
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-for='upload in geturl' id='fb'>
+                <a class="fb-share-button" v-bind:href="upload" target="_blank" data-layout='button' data-size="large">
+                  Share on Facebook
+                </a>
                 <div class="img-wrapper">
-                    <a v-bind:href="url"><img v-bind:src="upload" class="img-responsive"></a>
+                    <a v-bind:href="geturl"><img :src="upload" class="img-responsive"></a>
                     <div class="img-overlay">
                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </div>
@@ -213,21 +130,4 @@
     <script src="main.js"></script>
   </body>
 </html>
-
-
-
-<!-- <div class="fb-share-button" v-bind:data-href="upload?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" data-layout="button" data-size="large">
-  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F414612%2Fpexels-photo-414612.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
-</div>
-
-<div class="fb-share-button" data-href="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" data-layout="button" data-size="large">
-  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F414612%2Fpexels-photo-414612.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-    Share
-  </a>
-</div> -->
-
-                 
-<!-- <a class="fb-share-button" href="upload" target="_blank">
-    Share on Facebook
-  </a> -->
 
