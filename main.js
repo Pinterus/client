@@ -90,6 +90,10 @@ new Vue({
               localStorage.setItem('token', data.token)
               localStorage.setItem('username', data.username)
               this.nama = data.username
+              this.usernamereg = ''
+              this.emailreg = ''
+              this.passwordreg = ''
+              this.onregister = false
               this.isLogin()
               // this.isLogin = true
               // this.read()
@@ -112,6 +116,8 @@ new Vue({
               localStorage.setItem('token', data.token)
               localStorage.setItem('username', data.username)
               this.nama = data.username
+              this.emaillog = ''
+              this.passwordlog = ''
               this.isLogin()
               // this.isLogin = true
               // this.read()
@@ -123,9 +129,9 @@ new Vue({
   signout(){
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+    this.nama = ''
     this.isLogin()
     // this.isLogin = false
-    this.nama = ''
   },
   isLogin(){
     if(localStorage.getItem('token')){
