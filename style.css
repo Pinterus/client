@@ -1,5 +1,27 @@
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#searchbar{
+    width: 80%;
+}
+#searchform{
+    width: 100%;
+}
+#searcharea{
+    background-color: #E8EBEF
+}
+#upload{
+    width: 80%;
+    margin : 20px auto;
+}
+
+#navright{
+    margin: 0 auto !important;
+}
+
 #gallery {
-    padding-top: 40px;
+    padding-top: 20px;
 }
 @media screen and (min-width: 991px) {
     #gallery {
