@@ -18,7 +18,8 @@ new Vue({
     passwordreg:'',
     emaillog:'',
     passwordlog:'',
-    error:'',
+    errorlogin:'',
+    errorregister:'',
     errTrigger:'',
     nama:'',
     fileName : '',
@@ -92,7 +93,7 @@ new Vue({
           })
           .catch(err => {
             // console.log(err);
-            this.error = JSON.parse(err.response.request.response).message[0]                    
+            this.errorregister = JSON.parse(err.response.request.response).message[0]                    
           })
   },
   login(){
@@ -112,7 +113,7 @@ new Vue({
               // this.read()
           })
           .catch(err => {
-              this.error = JSON.parse(err.response.request.response).message[0]
+              this.errorlogin = JSON.parse(err.response.request.response).message[0]
           })
   },
   signout(){
