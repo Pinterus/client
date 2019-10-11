@@ -12,7 +12,10 @@ new Vue({
   el: '#app',
   data: {
     images: [],
-    file : ''
+    file : '',
+    fileName : '',
+    url : '',
+    on : false
   },
   // components : {Navbar},
   methods: {
@@ -40,7 +43,9 @@ new Vue({
       })
        .then((data)=>{
          console.log(data);
-         object
+         this.url = data.data.link
+         this.on = true
+         console.log(this.url)
        })
        .catch((err)=>{
          console.log(err);
@@ -48,14 +53,16 @@ new Vue({
     },
     handleFileUpload(){
       this.file = this.$refs.file.files[0]
+      this.fileName = this.file.name
       console.log(this.file,'bawah');
+      console.log(this.file.name,'bawah');
     }
   },
   computed: {
     
   },
   created() {
-    this.fetchImage()
+    // this.fetchImage()
   }
 })
 
