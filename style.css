@@ -38,6 +38,11 @@ body{
     margin: 10px auto;
 }
 
+#submitButton{
+    background-color: rgba(189, 189, 189, 0.541);
+    margin-top: 15px;
+}
+
 .img-wrapper img {
     width: 100%;
 }
