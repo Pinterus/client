@@ -21,6 +21,7 @@ new Vue({
     nama:'',
     fileName : '',
     url : [],
+    geturl: [],
     on : false,
     home : false,
     onregister : false,
@@ -196,6 +197,18 @@ new Vue({
   formRegister(){
     this.onregister = true;
     this.onlogin = false;
+  },
+  alldata(){
+    axios({
+      method: "get",
+      url: "http://localhost:3000/getall"
+    })
+      .then(data => {
+        this.geturl = data
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
   },
   computed: {
@@ -213,6 +226,7 @@ new Vue({
   created() {
     // this.fetchImage()
     this.isLogin()
+    this.alldata()
   }
 })
 
