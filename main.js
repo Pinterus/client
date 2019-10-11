@@ -22,7 +22,10 @@ new Vue({
     nama:'',
     fileName : '',
     url : '',
-    on : false
+    on : false,
+    home : false,
+    onregister : false,
+    onlogin : true
   },
   // components : {Navbar},
   methods: {
@@ -73,6 +76,7 @@ new Vue({
       console.log(this.file,'bawah');
     },
     register(){
+      console.log('masuk method erasda--------_>>>')
       axios({
           method: "post",
           url: "http://localhost:3000/register",
@@ -86,6 +90,7 @@ new Vue({
               localStorage.setItem('token', data.token)
               localStorage.setItem('username', data.username)
               this.nama = data.username
+              this.isLogin()
               // this.isLogin = true
               // this.read()
           })
@@ -107,6 +112,7 @@ new Vue({
               localStorage.setItem('token', data.token)
               localStorage.setItem('username', data.username)
               this.nama = data.username
+              this.isLogin()
               // this.isLogin = true
               // this.read()
           })
@@ -117,8 +123,20 @@ new Vue({
   signout(){
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+    this.isLogin()
     // this.isLogin = false
     this.nama = ''
+  },
+  isLogin(){
+    if(localStorage.getItem('token')){
+      this.home = true
+    } else {
+      this.home = false
+    }
+  },
+  formRegister(){
+    this.onregister = true;
+    this.onlogin = false;
   }
   },
   computed: {
@@ -126,6 +144,7 @@ new Vue({
   },
   created() {
     // this.fetchImage()
+    this.isLogin()
   }
 })
 
