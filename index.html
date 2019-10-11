@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
+    <title>Pinterus</title>
+  </head>
+  <body>
+    <div id="app">
+      <section id="navbar" v-if="home">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"><i class="fab fa-pinterest-p"></i> Pinterus</a>
+            </div>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" id="navright">
+              <li class="nav-item active">
+                <a class="nav-link" href="#"> {{ nama }} <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item" @click="signout()">
+                <a class="nav-link" href="#">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </section>
+      <!-- ini batas navbar -->
+      <!-- <navbar></navbar>  -->
+
+      <!-- <test></test> -->
+      <section id="gallery" v-if="!searchStatus && home" >
+        <div class="container">
+          <div id="image-gallery">
+            <div class="card-column">
+            <div class="row">
+              <!-- gambar gcs -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" v-for='upload in geturl' id='fb'>
+                <a class="fb-share-button" v-bind:href="upload" target="_blank" data-layout='button' data-size="large">
+                  Share on Facebook
+                </a>
+                <div class="img-wrapper">
+                    <a v-bind:href="geturl"><img :src="upload" class="img-responsive"></a>
+                    <div class="img-overlay">
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+            </div><!-- End row -->
+          </div><!-- End image gallery -->
+        </div><!-- End container --> 
+      </section>
+      <!-- upload image -->
+      <section id="upload" v-if='home'>
+        <h3>Upload your image</h3>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="file" ref='file' v-on:change="handleFileUpload()" style="cursor: pointer">
+          <label class="custom-file-label" for="customFile">Selected file : {{ file ? file.name : '' }}</label>
+        </div>
+        <button class="btn btn-primary-sm" v-on:click.prevent="submitFile()" id="submitButton">Submit</button>
+      </form>
+      </section>
+      <!-- login cards -->
+      <div class="container" v-if='!home && onlogin'>
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+              <div class="card-body">
+                <h5 class="card-title text-center">Sign In</h5>
+                <form class="form-signin" @submit.prevent="login()">
+                  <div class="form-label-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="text" id="loginEmail" class="form-control" placeholder="Email address" autofocus v-model="emaillog">
+                  </div>   
+                  <div class="form-label-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="passwordlog">
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Sign in</button>
+                </form>
+                <p id='regLink'>Don't have an account? <a href="" @click.prevent='formRegister'>Sign Up</a></p>
+              </div>
+            </div>
+          </div>
+      </div>
+        <!-- register cards -->
+        <div class="container" v-if='!home  && onregister'>
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+              <div class="card card-signin my-5">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Register</h5>
+                  <form class="form-signin" @submit.prevent="register()">
+                      <div class="form-label-group">
+                          <label for="inputUsername">Username</label>
+                          <input type="text" id="inputUsername" class="form-control" placeholder="Username" v-model="usernamereg">
+                        </div>
+                    <div class="form-label-group">
+                      <label for="inputEmail">Email</label>
+                      <input type="text" id="inputEmail" class="form-control" placeholder="Email address" autofocus v-model="emailreg">
+                    </div>   
+                    <div class="form-label-group">
+                      <label for="inputPassword">Password</label>
+                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="passwordreg">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signinButton"> Register</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- bootstrap end  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
+
